@@ -1,6 +1,6 @@
 ---
 title: "Introduction to R for data analysis"
-author: "Marcos Allende lópez"
+author: "Marcos Allende lÃ³pez"
 date: "September 28, 2017"
 output: html_document
 ---
@@ -195,7 +195,7 @@ What can we conclude here?
 
 -In the second and third diagram we have seeing that in principle age and gender are not correlated. That is, how old is the people in Facebook does not depend on if we are talking about men or about woman. 
 
--In the fourth and fifth diagram we can appreciate more differences between men's and women's spectrums. They both have 20 years-old as the mean value (the most repeated), but they have a quite different spectrum for people between 40 and 85. While men seems to be less interested in Facebook as they aged, women seems to have a second youth.
+-In the fourth and fifth diagram we can appreciate more differences between men's and women's spectrums. They both have 20 years-old as the mean value (the most repeated), but they have a quite different spectrum for people between 40 and 85. While men seems to be less interested in Facebook as they aged, women seem to have a second period of interest.
 
 -In the sixth plot we have seen that the difference between the third percentile (the age at where 75% of samples are below) and the first (the age at where 75% of samples are over) is quite bigger for women. This confirms the fact that their interest in Facebook is not so restricted to young people.
 
@@ -206,7 +206,7 @@ What can we conclude here?
 Now, let's introduce a new variable into the analysis: the number of friends. We want to know the number of friends by age and separated by gender.
 
 ```{r}
-ggplot(aes(x=age, y=friend_count), data=subset(Example1, !is.na(gender)))+geom_point() +scale_x_continuous(breaks=seq(0,2000,10))+ylab('Number of people that old')+xlab('Age')+facet_wrap(~gender, ncol=1)
+ggplot(aes(x=age, y=friend_count), data=subset(Example1, !is.na(gender)))+geom_point() +scale_x_continuous(breaks=seq(0,2000,10))+ylab('Number of friends')+xlab('Age')+facet_wrap(~gender, ncol=1)
 ```      
 
 Now, each point corresponds to a person with a number of friends between 0 and 5000 (Y axis) and been between 0 and 120 years-old (X axis). For a better understanding, we can require than only a point is completely black when corresponds to 30 or more people. Otherwise, it will be proportionally dimmed.
@@ -240,7 +240,7 @@ This is the simplest model, data fitted with a linear function. Let's work with 
 First we read and save the document and define the variables.
 
 ```{r}
-Example2<- read.csv('Gas consumption.csv')
+Example2<- read.csv('Gas_consumption.csv')
 Temp=Example2[,1]
 Consum=Example2[,2]
 ```
@@ -312,7 +312,7 @@ ggplot(Data,aes(ExpWins,W))+geom_point()+stat_smooth(method="lm")
 To have a measure of how good our prediction has been, we can look at the R-squared value (https://en.wikipedia.org/wiki/Coefficient_of_determination).
 
 ```{r}
-mod <- lm(W~ExpWins,data=mydata)
+mod <- lm(W~ExpWins,data=Data)
 summary(mod)
 ```
 
