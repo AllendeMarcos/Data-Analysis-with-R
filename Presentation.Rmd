@@ -79,7 +79,7 @@ exp(d)
 To work with external files, the first thing is to set the work directory. We can get the current directory by typing:
 
 ```{r}
-getwd()
+getwd()v
 ```
 
 Imagine we get something like "C:/Users/marcosal/Documents", but I have my file in a folder in desktop called "R course". Then I type:
@@ -115,21 +115,17 @@ You don't need to install them every time, it is enough with calling them (last 
 
 # 3. Types of data
 
-At a high level, data can by classified as structured or unstructured. Essentially, structured data is everything that resides in a database and unstructure data is everything else. Some examples of structured data are phone numbers, addresses, names or transactions information. As examples of unstructured data we have text files, image files, audio files or email messages.
+At a high level, data can be classified as structured or unstructured. Essentially, structured data is everything that resides in a database and unstructured data is everything else. Some examples of structured data are phone numbers, addresses, names or transactions information. As examples of unstructured data we have text files, image files, audio files or email messages.
 
-![Caption for the picture.](C:/Users/marcosal/Desktop/Research/R/R-Course/TypesOfData.PNG)
+It is fair to say that there is one type of intermediate data, the semi-structured data. For instance NoSQL or JSON files. Although not so easy to analyze as structured data, these files have certain structure. 
 
-It is fair to say that there is one type of intermediate data, the semi-structured data. For instance NoSQL or JSON files. Although not so easy to analyze as structured data, they have certain structure. 
-
-# 3.1. Unstructured data
-
-For unstructured data to be analyze, it needs to be structured first. The analysis of unstructured data can be seen as the analysis of structured meta-data that is in an unstructured data set.
+### 3.1. Unstructured data
 
 For unstructured data to be analyze, it needs to be structured first. The analysis of unstructured data can be seen as the analysis of structured meta-data that is in an unstructured data set.
 
 ### 3.1. Reading the file
 
-Let's see an example. First, let's install the packages we will need:
+Let's look at an example. First, let's install the packages we will need:
 
 ```{r}
 Needed <- c("tm", "SnowballCC", "RColorBrewer", "wordcloud", "biclust", 
@@ -147,7 +143,7 @@ pltexts
 dir(pltexts)  
 ```
 
-And load the package for mining text:
+Then we load the package for mining text and save the texts in a variable called docs:
 
 ```{r}
 library(tm)
@@ -165,7 +161,7 @@ writeLines(as.character(docs[3]))
 
 ### 3.2. Cleaning the text
 
-We will apply some functions to remove punctuation, numbers, special characters, stop words, spaces and more in order to clean the text before the analysis.
+We apply some functions to remove punctuation, numbers, special characters, stop words, spaces and more in order to clean the text before the analysis.
 
 ```{r}
 # Remove punctuation
@@ -218,7 +214,7 @@ writeLines(as.character(docs[3]))
 
 ### 3.3. Stage the data
 
-We use the "DocumentTermMatrix" function to construct or coerce to a term-document matrix or a document-term matrix.
+We use the "DocumentTermMatrix" function to construct or coerce to a term-document matrix or a document-term matrix. This step is what gives us a structured data from our unstructured set.
 
 ```{r}
 # Matrix
@@ -232,7 +228,7 @@ tdm
 
 ### 3.4. Explore data
 
-We can organize by frequency:
+We can organize it by frequency:
 
 ```{r}
 freq <- sort(colSums(as.matrix(dtm)), decreasing=TRUE)  
@@ -243,15 +239,13 @@ ord <- order(freq)
 head(freq, 20)
 ```
 
-Export to Excel:
+We can also Export to an Excel file:
 
 ```{r}
 m <- as.matrix(dtm)   
 dim(m)  
 write.csv(m, file="DocumentTermMatrix.csv")   
 ```
-
-
 
 
 ### 3.5. Plots
@@ -276,10 +270,12 @@ install.packages("RColorBrewer")
 library(RColorBrewer)
 library(wordcloud)
 set.seed(142)   
-wordcloud(names(freq), freq, min.freq=25)   
+wordcloud(names(freq), freq, min.freq=100)   
 ```
 
 # 4. Analyzing data
+
+Now let's assume that we have already converted our unstructured informations into a structured set and we have it saved in a .tsv document that we can open with Excel. We are going to review some of the tools provided by R to extract information from it.
 
 ### 4.1. Reading the file
 
@@ -295,14 +291,16 @@ Example1 <- read.csv('Pseudo_Facebook_data.tsv', sep='\t')
 Now, let's introduce some functions to view it, know its structure, dimensions and first and last rows. 
 
 ```{r}
-View(Example1)
+setwd("C:/Users/marcosal/Desktop/Research/R/R-Course")
+list.files()
+Example1 <- read.csv('Pseudo_Facebook_data.tsv', sep='\t')
 str(Example1)
 dim(Example1)
 head(Example1)
 tail(Example1)
 ```
 
-### 4.1. One variable analysis: age
+### 4.2. One variable analysis: age
 
 Let's focus on the age, and plot a very simple graph to visualize the column ages with the equivalent options qplot and ggplot (one at a time):
 
@@ -367,7 +365,7 @@ What can we conclude here?
 
 -The final table depicts some of the previous arguments turned into numbers.
 
-### 4.1. Two variable analysis: age and number of friends/number of likes
+### 4.3. Two variable analysis: age and number of friends/number of likes
 
 Now, let's introduce a new variable into the analysis: the number of friends. We want to know the number of friends by age and separated by gender.
 
@@ -499,6 +497,10 @@ More related to the bank, Marta Alonso Fernandez and Jose Luis Delgado Davara pr
 https://github.com/EL-BID/Libreria-R-Numeros-para-el-Desarrollo/blob/master/Tutorial/Tutorial.Rmd
 
 https://www.youtube.com/watch?v=ThyJ8siKs4o
+
+The example for data mining in the third section has been extracted from this great and highly recommendable post:
+
+https://rstudio-pubs-static.s3.amazonaws.com/265713_cbef910aee7642dc8b62996e38d2825d.html
 
 The two last examples are inspired by this two videos from youtube:
 
