@@ -1,6 +1,6 @@
 ---
 title: "Introduction to R for data analysis"
-author: "Marcos Allende lópez"
+author: "Marcos Allende lÃ³pez"
 date: "September 28, 2017"
 output: html_document
 ---
@@ -9,7 +9,7 @@ output: html_document
 
 ### 1.1. Programming languages 
 
-Wikipedia defines a programming language as "a formal language that specifies a set of instructions that can be used to produce various kinds of output. Programming languages generally consist of instructions for a computer. Programming languages can be used to create programs that implement specific algorithms."
+Wikipedia defines a programming language as "a formal language that specifies a set of instructions that can be used to produce various kinds of output. Programming languages generally consists of instructions for a computer. Programming languages can be used to create programs that implement specific algorithms."
 
 In practice, programming is about creating a piece of code, a software program, to accomplish a task in a computer. Generally, programmers use languages known as "high-level languages", that have strong abstraction from the computer language. Some examples are Java, PHP, C++, Python or R. The election of a specific high-level language depends on the task it will be used for. The codes written in these languages are not understood by the computer directly. They need to be compiled, interpreted or both in order to be understood and run.
 
@@ -55,7 +55,7 @@ For more documentation https://www.rdocumentation.org/, https://Stackoverflow.co
 
 ### 2.1. Defining vectors, functions and more
 
-Despite the goal of this presentation is an approach to the use of R for data analysis, it is useful to start playing a little bit defining different types of objects. In R, objects are deffined with the arrow <- as follows:
+Despite the goal of this presentation is to have an approach to the use of R for data analysis, it is useful to start playing a little bit by defining different types of objects. In R, objects are defined with the arrow <- as follows:
 
 ```{r}
 a <- 10
@@ -66,7 +66,7 @@ typeof(a)
 typeof(c)
 ```
 
-This objects are temporarily stored and can be seen in the window "Environment". We can also combine them or get more information. For instance:
+These objects are temporarily stored and can be seen in the window "Environment". We can also combine them or get more information. For instance:
 
 ```{r}
 w<-a+b
@@ -76,7 +76,7 @@ exp(d)
 
 ### 2.2. Opening external files
 
-To work with external files, the first thing is to set the work directory. We can get the current directory by typing:
+To work with external files, the first thing to do is to set the work directory. We can get the current directory by typing:
 
 ```{r}
 getwd()v
@@ -100,7 +100,7 @@ If it was "Document_name.tsv" (tabulator separated values) we would need to spec
 Document1 <- read.csv('Document_name.tsv', sep='\t')
 ```
 
-Let's play with real data. For this presentation are provided three documents with data. We are going to open and analyze one of them. Before that, it will be useful and necessary to install some packages:
+Let's play with real data. For this presentation we are providing three documents with data. We are going to open and analyze one of them. Before that, it will be useful and necessary to install some packages:
 
 ```{r}
 	install.packages('ggplot2', dependencies = T)
